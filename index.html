@@ -126,7 +126,7 @@ ul.ctl{padding-left:18px;margin:10px 0;color:#ddd5ca;font-size:14px}ul.ctl li{ma
   <div class="topbar"><button class="tb" id="jkBack" type="button">Back</button><button class="tb hide" id="jkStop" type="button">Stop the music</button></div>
   <p class="kicker">The jukebox</p>
   <h1>Songs we played</h1>
-  <p class="lede" style="font-size:17px;margin:10px 0 0">Every song here comes from your notes. Tap one to play it. The emerald drinks glow brighter while it plays.</p>
+  <p class="lede" style="font-size:17px;margin:10px 0 0">Every song here comes from your notes: the ones you named and the ones Miles named. Tap one to play it. The emerald drinks glow brighter while it plays.</p>
   <ul class="songs" id="songs"></ul>
   <p class="fine" id="jkFoot"></p>
 </div></div>
@@ -154,7 +154,13 @@ var SONGS=[
 {c:'C1',t:'Clouds',a:'Patrice',s:'Patrice is on Our Soundtrack, and you picked this one',bpm:70,ids:['RrhaisATTp0','AzPVPX1z0z0','k7sb-cLwnro']},
 {c:'C2',t:'Unconditional Love',a:'2Pac',s:'Tupac is on Our Soundtrack, and you picked this one',bpm:86,ids:['SqddDc55-pc','xpAoDBG0-VI','8K6SO2PCseg']},
 {c:'C3',t:"Brenda's Got a Baby",a:'2Pac',s:'Tupac is on Our Soundtrack, and you picked this one',bpm:94,ids:['NRWUs0KtB-I','WdW4nK30uXw','KEXGBb02Tto']},
-{c:'C4',t:'Keep Ya Head Up',a:'2Pac',s:'Tupac is on Our Soundtrack, and you picked this one',bpm:84,ids:['fAJfDP3b5_U','MSaAZZMs0FY','SHVzWMFMH6Y']}
+{c:'C4',t:'Keep Ya Head Up',a:'2Pac',s:'Tupac is on Our Soundtrack, and you picked this one',bpm:84,ids:['fAJfDP3b5_U','MSaAZZMs0FY','SHVzWMFMH6Y']},
+{c:'D1',t:'Billie Jean',a:'Michael Jackson',s:'Yours: the song you were carrying in The Glitches and the Heartbeat',bpm:117,ids:['Zi_XLOBDo_Y','Kr4EQDVETuA','p1ct1plRUtw']},
+{c:'D2',t:'Auf der Mauer, auf der Lauer',a:'German children\u2019s song',s:'Yours: from your diary of August 25 and your Kinderlieder note',bpm:108,ids:['K6qok5LoVsA','jcIVSzIn6zA','-8cjBs7Q10A']},
+{c:'D3',t:'Hey Maria (Elderbrook Remix)',a:'Klangkarussell & Elderbrook',s:'Miles named this one in The Resonance',bpm:120,ids:['5A7anLTkUOs','e3okVeXZHHY','ikAmdyXhL2Y']},
+{c:'D4',t:'Bear With Me',a:'Through the Roots feat. Eric Rachmany',s:'Miles named this one in The Resonance',bpm:84,ids:['9m-lvNYj7TY','MQ02qm0zahM','75UUUlCmYy0']},
+{c:'E1',t:'Autumn Leaves',a:'Cannonball Adderley with Miles Davis',s:'Miles named this one in Neon Vale: Four Continents and a Bar',bpm:100,ids:['CpB7-8SGlJ0','pfxosTobxlI','tguu4m38U78']},
+{c:'E2',t:'I Put a Spell on You',a:'Screamin\u2019 Jay Hawkins',s:'The 1956 original, which Miles named in Jonas and Mary Rose: Home, Home',bpm:66,ids:['82cdnAUvsw8','H_dljGbYcCw','7kGPhpvqtOc']}
 ];
 var FOOT='The songs stream from YouTube, so the jukebox needs internet.';
 
@@ -444,7 +450,7 @@ blk(6.6,7,1.97,2.0,-7.85,-3.15,lam(0x3a2214));
 
 // ---------- jukebox ----------
 var jukeGroup=new THREE.Group();scene.add(jukeGroup);
-var jFront=cv(256,356,function(g,w,h){g.fillStyle='#3a1e0e';g.fillRect(0,0,w,h);var lg=g.createLinearGradient(0,0,0,h);lg.addColorStop(0,'#ffcf7a');lg.addColorStop(1,'#c25a1a');g.fillStyle=lg;g.fillRect(14,8,w-28,150);g.fillStyle='#fff3dc';g.fillRect(28,20,w-56,126);g.fillStyle='#5a2a10';g.font='bold 15px Georgia';g.textAlign='center';g.fillText('SELECTIONS',w/2,40);g.font='10px Georgia';g.textAlign='left';var half=Math.ceil(SONGS.length/2);SONGS.forEach(function(s,i){var t=s.c+' '+s.t;if(t.length>17)t=t.slice(0,16)+'\u2026';var col=i<half?0:1,row=i<half?i:i-half;g.fillText(t,34+col*96,60+row*14);});
+var jFront=cv(256,356,function(g,w,h){g.fillStyle='#3a1e0e';g.fillRect(0,0,w,h);var lg=g.createLinearGradient(0,0,0,h);lg.addColorStop(0,'#ffcf7a');lg.addColorStop(1,'#c25a1a');g.fillStyle=lg;g.fillRect(14,8,w-28,150);g.fillStyle='#fff3dc';g.fillRect(28,20,w-56,126);g.fillStyle='#5a2a10';g.font='bold 15px Georgia';g.textAlign='center';g.fillText('SELECTIONS',w/2,40);var half=Math.ceil(SONGS.length/2),rh=Math.min(14,80/Math.max(1,half-1));g.font=(rh<14?9:10)+'px Georgia';g.textAlign='left';SONGS.forEach(function(s,i){var t=s.c+' '+s.t;if(t.length>17)t=t.slice(0,16)+'\u2026';var col=i<half?0:1,row=i<half?i:i-half;g.fillText(t,34+col*96,60+row*rh);});
   g.fillStyle='#d8d8dc';g.fillRect(14,166,w-28,26);for(var b=0;b<10;b++){g.fillStyle=b%2?'#b01e1e':'#f2e2c0';g.fillRect(24+b*21,171,14,16);}
   var rg=g.createRadialGradient(w/2,270,10,w/2,270,110);rg.addColorStop(0,'#ffb04a');rg.addColorStop(1,'#5a2208');g.fillStyle=rg;g.fillRect(14,200,w-28,h-214);g.strokeStyle='#e8c070';g.lineWidth=3;for(var i=0;i<7;i++){g.beginPath();g.arc(w/2,h-14,30+i*18,Math.PI,2*Math.PI);g.stroke();}});
 blk(6.35,7,0,1.25,-0.45,0.45,lam(0x4a2614),jukeGroup);
