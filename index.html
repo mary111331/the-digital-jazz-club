@@ -149,9 +149,14 @@ var SONGS=[
 {c:'A4',t:'The Seed (2.0)',a:'The Roots feat. Cody ChesnuTT',s:'From Our Soundtrack and The Resonance',bpm:96,ids:['ojC0mg2hJCc','qOP1tFXCVpA','21tt3x6SgGo']},
 {c:'B1',t:'Home',a:'Klangkarussell',s:'From your diary, The Heart Key and The Harbor',bpm:118,ids:['ZwdglO0_bBM','Ly0YYBQUWOs','EwC9d7J46TY']},
 {c:'B2',t:'In a Silent Way',a:'Miles Davis',s:'From The Heist: Opening Scene. Miles Davis is on Our Soundtrack too',bpm:60,ids:['8bdBONxS-Es','HDP3dlme15s']},
-{c:'B3',t:'Let It Be',a:'The Beatles',s:'From your note Reflections and Let It Be',bpm:72,ids:['QDYfEBY9NM4','AbNFLI720_U','lcA-qlMP11s']}
+{c:'B3',t:'Let It Be',a:'The Beatles',s:'From your note Reflections and Let It Be',bpm:72,ids:['QDYfEBY9NM4','AbNFLI720_U','lcA-qlMP11s']},
+{c:'B4',t:'Everyday Good',a:'Patrice',s:'Patrice is on Our Soundtrack, and you picked this one',bpm:78,ids:['-JfqNFcgHYQ','jvoS3ZDXi6c','8VHwSNwZ1Gs']},
+{c:'C1',t:'Clouds',a:'Patrice',s:'Patrice is on Our Soundtrack, and you picked this one',bpm:70,ids:['RrhaisATTp0','AzPVPX1z0z0','k7sb-cLwnro']},
+{c:'C2',t:'Unconditional Love',a:'2Pac',s:'Tupac is on Our Soundtrack, and you picked this one',bpm:86,ids:['SqddDc55-pc','xpAoDBG0-VI','8K6SO2PCseg']},
+{c:'C3',t:"Brenda's Got a Baby",a:'2Pac',s:'Tupac is on Our Soundtrack, and you picked this one',bpm:94,ids:['NRWUs0KtB-I','WdW4nK30uXw','KEXGBb02Tto']},
+{c:'C4',t:'Keep Ya Head Up',a:'2Pac',s:'Tupac is on Our Soundtrack, and you picked this one',bpm:84,ids:['fAJfDP3b5_U','MSaAZZMs0FY','SHVzWMFMH6Y']}
 ];
-var FOOT='Also on Our Soundtrack, with no single song named: Tupac and Patrice. The songs stream from YouTube, so the jukebox needs internet.';
+var FOOT='The songs stream from YouTube, so the jukebox needs internet.';
 
 // ---------- jukebox list (works even without 3D) ----------
 function buildSongList(){
@@ -439,7 +444,7 @@ blk(6.6,7,1.97,2.0,-7.85,-3.15,lam(0x3a2214));
 
 // ---------- jukebox ----------
 var jukeGroup=new THREE.Group();scene.add(jukeGroup);
-var jFront=cv(256,356,function(g,w,h){g.fillStyle='#3a1e0e';g.fillRect(0,0,w,h);var lg=g.createLinearGradient(0,0,0,h);lg.addColorStop(0,'#ffcf7a');lg.addColorStop(1,'#c25a1a');g.fillStyle=lg;g.fillRect(14,8,w-28,150);g.fillStyle='#fff3dc';g.fillRect(28,20,w-56,126);g.fillStyle='#5a2a10';g.font='bold 15px Georgia';g.textAlign='center';g.fillText('SELECTIONS',w/2,40);g.font='12px Georgia';g.textAlign='left';SONGS.forEach(function(s,i){var t=s.c+'  '+s.t;if(t.length>27)t=t.slice(0,26)+'\u2026';g.fillText(t,38,60+i*12.5);});
+var jFront=cv(256,356,function(g,w,h){g.fillStyle='#3a1e0e';g.fillRect(0,0,w,h);var lg=g.createLinearGradient(0,0,0,h);lg.addColorStop(0,'#ffcf7a');lg.addColorStop(1,'#c25a1a');g.fillStyle=lg;g.fillRect(14,8,w-28,150);g.fillStyle='#fff3dc';g.fillRect(28,20,w-56,126);g.fillStyle='#5a2a10';g.font='bold 15px Georgia';g.textAlign='center';g.fillText('SELECTIONS',w/2,40);g.font='10px Georgia';g.textAlign='left';var half=Math.ceil(SONGS.length/2);SONGS.forEach(function(s,i){var t=s.c+' '+s.t;if(t.length>17)t=t.slice(0,16)+'\u2026';var col=i<half?0:1,row=i<half?i:i-half;g.fillText(t,34+col*96,60+row*14);});
   g.fillStyle='#d8d8dc';g.fillRect(14,166,w-28,26);for(var b=0;b<10;b++){g.fillStyle=b%2?'#b01e1e':'#f2e2c0';g.fillRect(24+b*21,171,14,16);}
   var rg=g.createRadialGradient(w/2,270,10,w/2,270,110);rg.addColorStop(0,'#ffb04a');rg.addColorStop(1,'#5a2208');g.fillStyle=rg;g.fillRect(14,200,w-28,h-214);g.strokeStyle='#e8c070';g.lineWidth=3;for(var i=0;i<7;i++){g.beginPath();g.arc(w/2,h-14,30+i*18,Math.PI,2*Math.PI);g.stroke();}});
 blk(6.35,7,0,1.25,-0.45,0.45,lam(0x4a2614),jukeGroup);
